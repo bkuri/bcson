@@ -1,0 +1,28 @@
+{
+  "name": "bcson",
+  "version": "1.0.0",
+  "description": "Bind CSON",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "6.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkuri/bcson.git"
+  },
+  "author": "bkuri",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bkuri/bcson/issues"
+  },
+  "homepage": "https://github.com/bkuri/bcson#readme",
+  "dependencies": {
+    "fs-cson": "^0.3.2",
+    "graceful-fs": "^4.1.2",
+    "mkdirp": "^0.5.1",
+    "observed": "^1.1.1"
+  }
+}
