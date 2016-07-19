@@ -6,12 +6,12 @@ found = require('path-exists').sync
 mkdir = require('mkdirp').sync
 tmp = {}
 
-keepExtension = (file, ext='.cson') ->
+full = (file, ext='.cson') ->
   io = file.indexOf(ext, file.length - ext.length)
   return if (io < 0) then "#{ file }#{ ext }" else file
 
-module.exports = (file, callback=null, content={}) ->
-  file = keepExtension(file)
+module.exports = (file, content={}, callback=null) ->
+  file = full(file)
   return tmp[file] if tmp[file]?
 
   unless found(file)
@@ -19,15 +19,12 @@ module.exports = (file, callback=null, content={}) ->
     writeFileSync file, content
 
   watched = new Proxy readFileSync(file),
-    get: (target, key) ->
-      return target[key]
-
-    set: (target, key, value, receiver) ->
+    set: (target, key, value) ->
       target[key] = value
 
       writeFileSync file, target
-      callback(target) if callback?
-      return value
+      callback?(watched)
+      return yes
 
-  callback(watched) if callback?
+  callback?(watched)
   return tmp[file] = watched
