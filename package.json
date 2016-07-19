@@ -1,32 +1,25 @@
 {
-  "name": "bcson",
-  "version": "1.1.3",
+  "author": "bkuri",
+  "bugs": { "url": "https://github.com/bkuri/bcson/issues" },
+  "dependencies": {
+    "fs-cson": "^0.3.2",
+    "mkdirp": "^0.5.1",
+    "path-exists": "^3.0.0"
+  },
   "description": "Bind CSON",
+  "devDependencies": { "chai": "^3.5.0" },
+  "engines": { "node": "6.2.0" },
+  "homepage": "https://github.com/bkuri/bcson#readme",
+  "license": "MIT",
   "main": "bcson.coffee",
-  "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register",
-    "posttest": "rm -f test/*.cson"
-  },
-  "engines": {
-    "node": "6.2.0"
-  },
+  "name": "bcson",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bkuri/bcson.git"
   },
-  "author": "bkuri",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bkuri/bcson/issues"
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register",
+    "posttest": "rm -f test/*.cson"
   },
-  "homepage": "https://github.com/bkuri/bcson#readme",
-  "dependencies": {
-    "fs-cson": "^0.3.2",
-    "graceful-fs": "^4.1.2",
-    "mkdirp": "^0.5.1",
-    "path-exists": "^3.0.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0"
-  }
+  "version": "1.1.4"
 }
