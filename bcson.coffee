@@ -6,12 +6,12 @@ found = require('path-exists').sync
 mkdir = require('mkdirp').sync
 tmp = {}
 
-keepExtension = (file, ext) ->
-  included = file.indexOf(ext, file.length - ext.length) > -1
-  return if included then file else "#{ file }#{ ext }"
+keepExtension = (file, ext='.cson') ->
+  io = file.indexOf(ext, file.length - ext.length)
+  return unless (io < 0) then "#{ file }#{ ext }" else file
 
 module.exports = (file, callback=null, content={}) ->
-  file = keepExtension(file, '.cson')
+  file = keepExtension(file)
   return tmp[file] if tmp[file]?
 
   unless found(file)
