@@ -4,7 +4,7 @@
   "description": "Bind CSON",
   "main": "bcson.coffee",
   "scripts": {
-    "test": "rm -f /tmp/test1.cson && mocha --compilers coffee:coffee-script/register"
+    "test": "rm -f test/test.cson && mocha --compilers coffee:coffee-script/register"
   },
   "engines": {
     "node": "6.2.0"
