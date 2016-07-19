@@ -1,10 +1,10 @@
 {
   "name": "bcson",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Bind CSON",
   "main": "bcson.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "rm -f /tmp/test1.cson && mocha --compilers coffee:coffee-script/register"
   },
   "engines": {
     "node": "6.2.0"
@@ -25,5 +25,8 @@
     "mkdirp": "^0.5.1",
     "observed": "^1.1.1",
     "path-exists": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
   }
 }

@@ -1,32 +1,33 @@
 'use strict'
 
-
 {dirname} = require('path')
 {readFileSync, writeFileSync} = require('fs-cson')
 found = require('path-exists').sync
 mkdir = require('mkdirp').sync
-observed = require('observed')
 tmp = {}
 
-
 keepExtension = (file, ext) ->
-  found = file.indexOf(ext, file.length - ext.length) > -1
-  return if found then file else "#{ file }#{ ext }"
+  included = file.indexOf(ext, file.length - ext.length) > -1
+  return if included then file else "#{ file }#{ ext }"
 
-
-module.exports = (file, callback=null) ->
+module.exports = (file, callback=null, content={}) ->
   file = keepExtension(file, '.cson')
   return tmp[file] if tmp[file]?
 
   unless found(file)
     mkdir dirname(file)
-    writeFileSync file, {}
+    writeFileSync file, content
 
-  parsed = readFileSync(file)
-  observe = observed(parsed)
+  watched = new Proxy readFileSync(file),
+    get: (target, key) ->
+      return target[key]
 
-  observe.on 'change', ->
-    writeFileSync file, parsed
+    set: (target, key, value, receiver) ->
+      target[key] = value
 
-  callback?(observe)
-  return tmp[file] = parsed
+      writeFileSync file, target
+      callback(target) if callback?
+      return value
+
+  callback(watched) if callback?
+  return tmp[file] = watched

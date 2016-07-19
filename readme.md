@@ -1,7 +1,9 @@
 Bind Cson - "bcson"
 ===================
 
-Bind Cson: Reactive way to read/write cson files. Shamelessly forked from [bjson](https://github.com/renatorib/bjson).
+Bind Cson: Reactive way to read/write cson files using ES6 Proxies.
+
+Shamelessly forked from [bjson](https://github.com/renatorib/bjson).
 
 How it works
 ------------
@@ -152,3 +154,7 @@ settings.foo = 'bar'
 # value: 'bar'
 # oldValue: undefined
 ```
+
+### Test suite
+
+Run `npm test`. Uses mocha and chai.
