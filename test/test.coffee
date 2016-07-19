@@ -5,7 +5,7 @@ bcson = require('..')
 found = require('path-exists').sync
 
 callback = (content) ->
-  console.log JSON.stringify({content}, null, '  ')
+  console.log JSON.stringify({content})
   return
 
 describe 'BCSON', ->
