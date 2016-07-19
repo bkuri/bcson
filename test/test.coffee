@@ -5,7 +5,7 @@ bcson = require('..')
 found = require('path-exists').sync
 
 callback = (content) ->
-  # console.log JSON.stringify({content}, null, '  ')
+  console.log JSON.stringify({content}, null, '  ')
   return
 
 describe 'BCSON', ->
@@ -23,5 +23,6 @@ describe 'BCSON', ->
     expect(cson.foo).to.equal 'bar'
 
   it 'should verify that "foo" has a value of "BAZ".', ->
-    cson.foo.bar = 'BAZ'
+    cson.foo = 'BAZ'
+
     expect(cson.foo).to.equal 'BAZ'

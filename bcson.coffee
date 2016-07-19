@@ -8,7 +8,7 @@ tmp = {}
 
 keepExtension = (file, ext='.cson') ->
   io = file.indexOf(ext, file.length - ext.length)
-  return unless (io < 0) then "#{ file }#{ ext }" else file
+  return if (io < 0) then "#{ file }#{ ext }" else file
 
 module.exports = (file, callback=null, content={}) ->
   file = keepExtension(file)
