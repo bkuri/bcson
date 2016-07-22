@@ -59,12 +59,9 @@ Getting started
 bcson = require('bcson')
 settings = bcson('settings') # will read or create settings.cson
 settings.prop = 'bar'
-```
 
-*settings.cson:*
-
-```cson
-prop: "bar"
+# one liner:
+# settings = require('bcson', prop: 'bar')
 ```
 
 *settings.cson:*
