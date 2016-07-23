@@ -75,12 +75,9 @@ whatever.coffee
 ```coffee
 bcson = require('bcson')
 
-settings = bcson 'settings', (observe) ->
-  observe.on 'change', (changes) ->
-    console.log 'Path:', changes.path
-    console.log 'Old Value:', changes.oldValue
-    console.log 'New Value:', changes.value
-    console.log '-----'
+settings = bcson 'settings', {}, (object) ->
+  console.log JSON.stringify(object)
+  return
 
 settings.prop = 'foo'
 settings.otherprop = 'bar'
