@@ -4,7 +4,6 @@
 {readFileSync, writeFileSync} = require('fs-cson')
 found = require('path-exists').sync
 mkdir = require('mkdirp').sync
-tmp = {}
 
 full = (file, ext='.cson') ->
   io = file.indexOf(ext, file.length - ext.length)
@@ -12,19 +11,18 @@ full = (file, ext='.cson') ->
 
 module.exports = (file, content={}, callback=null) ->
   file = full(file)
-  return tmp[file] if tmp[file]?
 
   unless found(file)
     mkdir dirname(file)
     writeFileSync file, content
 
   watched = new Proxy readFileSync(file),
-    set: (target, key, value) ->
+    set: (target, key, value, proxy) ->
       target[key] = value
 
       writeFileSync file, target
       callback?(watched)
-      return yes
+      return Reflect.set(target, key, value, proxy)
 
   callback?(watched)
-  return tmp[file] = watched
+  return watched
