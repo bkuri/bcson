@@ -1,7 +1,7 @@
 'use strict'
 
-{dirname} = require('path')
-{readFileSync, writeFileSync} = require('fs-cson')
+{ dirname } = require('path')
+{ readFileSync, writeFileSync } = require('fs-cson')
 found = require('path-exists').sync
 mkdir = require('mkdirp').sync
 
